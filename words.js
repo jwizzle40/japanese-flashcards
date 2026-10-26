@@ -60,6 +60,7 @@ window.WORDS = [
 
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
+  { kana: "おかね", kanji: "お金", en: "money", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
 
   // Countries and languages (country names are written in katakana)
@@ -130,6 +131,8 @@ window.SENTENCES = [
   { en: "Is Tanaka a university student?", parts: ["たなか", "さん", "は", "だいがくせい", "です", "か"] },
   { en: "It's a Japanese university.", parts: ["にほん", "の", "だいがく", "です"] },
   { en: "Are you a university student too?", parts: ["あなた", "も", "だいがくせい", "です", "か"] },
+  { en: "It's my money.", parts: ["わたし", "の", "おかね", "です"] },
+  { en: "Whose money is it?", parts: ["だれ", "の", "おかね", "です", "か"] },
 
   // Dogs
   { en: "It's my dog.", parts: ["わたし", "の", "いぬ", "です"] },
