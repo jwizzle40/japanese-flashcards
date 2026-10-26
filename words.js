@@ -28,6 +28,8 @@ window.WORDS = [
   // Particles
   { kana: "も", en: "also / too", note: "わたしも = me too", also: ["藻"], src: ["Lessons"] },
   { kana: "の", en: "'s / of", note: "わたしのくるま = my car", also: ["野"], src: ["Lessons"] },
+  { kana: "は", en: "topic marker (as for…)", note: "written は, said “wa” — わたしは = as for me", also: ["わ"], src: ["Lessons"] },
+  { kana: "か", en: "question marker", note: "goes at the end — ですか = is it?", src: ["Lessons"] },
 
   // Is not
   { kana: "じゃない", en: "is not (casual)", note: "Most common in conversation — friends and family", src: ["Lessons"] },
@@ -69,6 +71,7 @@ window.WORDS = [
 ];
 
 // Sentence practice — built only from the words above, plus です, さん and names.
+// No を yet (not covered in her lessons).
 // parts: each piece is a word's kana from the list (or です). Kanji and the
 // mic's accepted spellings come from the word list automatically.
 window.SENTENCES = [
@@ -102,6 +105,24 @@ window.SENTENCES = [
   { en: "Naomi is Japanese too.", parts: ["なおみ", "さん", "も", "にほん", "じん", "です"] },
   { en: "It's Tanaka's green tea.", parts: ["たなか", "さん", "の", "りょくちゃ", "です"] },
   { en: "Hana is a kind person too.", parts: ["はな", "さん", "も", "やさしい", "ひと", "です"] },
+
+  // With は and か
+  { en: "I'm a student.", parts: ["わたし", "は", "がくせい", "です"] },
+  { en: "I'm American.", parts: ["わたし", "は", "アメリカじん", "です"] },
+  { en: "I'm a Japanese-language student.", parts: ["わたし", "は", "にほんご", "の", "がくせい", "です"] },
+  { en: "Tanaka is a teacher.", parts: ["たなか", "さん", "は", "せんせい", "です"] },
+  { en: "Hana is an international student.", parts: ["はな", "さん", "は", "りゅうがくせい", "です"] },
+  { en: "Naomi is kind.", parts: ["なおみ", "さん", "は", "やさしい", "です"] },
+  { en: "Tanaka isn't a lawyer. (polite)", parts: ["たなか", "さん", "は", "べんごし", "じゃありません"] },
+  { en: "Who is that person?", parts: ["あのひと", "は", "だれ", "です", "か"] },
+  { en: "Who is that man over there?", parts: ["あの", "おとこのひと", "は", "だれ", "です", "か"] },
+  { en: "Whose car is that?", parts: ["その", "くるま", "は", "だれ", "の", "くるま", "です", "か"] },
+  { en: "Who is the English teacher?", parts: ["えいご", "の", "せんせい", "は", "だれ", "です", "か"] },
+  { en: "Is Hana a doctor?", parts: ["はな", "さん", "は", "いしゃ", "です", "か"] },
+  { en: "Is Naomi Japanese?", parts: ["なおみ", "さん", "は", "にほん", "じん", "です", "か"] },
+  { en: "Is that person an office worker?", parts: ["あのひと", "は", "かいしゃいん", "です", "か"] },
+  { en: "Is this tea green tea?", parts: ["この", "おちゃ", "は", "りょくちゃ", "です", "か"] },
+  { en: "Are you British?", parts: ["イギリス", "じん", "です", "か"] },
 ];
 
 // Pieces sentences use that aren't flashcards: です, さん, and names.
