@@ -173,7 +173,7 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
-  <div class="version">v13</div>
+  <div class="version">v14</div>
 </section>
 
 <!-- Study -->
@@ -345,10 +345,10 @@ function drawCard() {
 
   const card = pile.querySelector(".card");
   card.onclick = () => { if (state !== "done") flip(); };
-  card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(cur.kana); });
+  card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(spoken(cur)); });
 
   $("prompt").textContent = cur.sentence ? "Say it in Japanese" : side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
-  if (side === "jp") say(cur.kana);
+  if (side === "jp") say(spoken(cur));
   setHint("Tap the card to flip");
   frontActions();
 }
@@ -359,7 +359,7 @@ function flip() {
   card.classList.toggle("flipped", toBack);
   if (toBack) {
     state = "back";
-    if (side === "en") say(cur.kana);
+    if (side === "en") say(spoken(cur));
     setHint("Did you get it?");
     gradeActions();
   } else {
@@ -428,6 +428,12 @@ function pickVoice() {
   jaVoice = ja.sort((a, b) => rank(b) - rank(a))[0] || null;
 }
 if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+// Sentences are read from their kanji, with the particle は spelled わ, so the
+// voice doesn't read は as "ha". Names and breeds stay in kana (甲斐犬 can be misread).
+// The card still shows the normal spelling.
+function spoken(w) {
+  return w.sentence ? w.parts.map(p => p === "は" ? "わ" : byKana[p]?.src && byKana[p].kanji || p).join("") : w.kana;
+}
 function say(text) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
@@ -506,7 +512,7 @@ function correct() {
   const card = document.querySelector(".card");
   card.classList.add("flipped", "correct");
   state = "done";
-  say(cur.kana);
+  say(spoken(cur));
   setHint("");
   grade(true);
   actions([["green", "Continue", () => next()]]);
