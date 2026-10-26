@@ -9,6 +9,7 @@ window.WORDS = [
   // People
   { kana: "だれ", kanji: "誰", en: "who", src: ["Lessons"] },
   { kana: "わたし", kanji: "私", en: "I / me", also: ["わたくし"], src: ["Lessons"] },
+  { kana: "あなた", en: "you", note: "used sparingly — people usually say the person's name instead", also: ["貴方"], src: ["Lessons"] },
   { kana: "ひと", kanji: "人", en: "person", also: ["ヒト"], src: ["Lessons"] },
   { kana: "あのひと", kanji: "あの人", en: "that person", note: "also used for he / she", src: ["Lessons"] },
   { kana: "おとこのひと", kanji: "男の人", en: "man", src: ["Lessons"] },
@@ -128,6 +129,7 @@ window.SENTENCES = [
   { en: "Naomi is a university student too.", parts: ["なおみ", "さん", "も", "だいがくせい", "です"] },
   { en: "Is Tanaka a university student?", parts: ["たなか", "さん", "は", "だいがくせい", "です", "か"] },
   { en: "It's a Japanese university.", parts: ["にほん", "の", "だいがく", "です"] },
+  { en: "Are you a university student too?", parts: ["あなた", "も", "だいがくせい", "です", "か"] },
 
   // Dogs
   { en: "It's my dog.", parts: ["わたし", "の", "いぬ", "です"] },
