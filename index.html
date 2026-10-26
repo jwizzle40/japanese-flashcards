@@ -73,6 +73,7 @@
   }
   .chip.on { background: #ddf4ff; border-color: #84d8ff; color: var(--blue-dark); }
   .home .spacer { flex: 1; min-height: 24px; }
+  .home .version { text-align: center; color: var(--line); font-size: 12px; font-weight: 700; margin-top: 10px; }
   .home .msg { text-align: center; color: var(--muted); font-weight: 700; margin-bottom: 12px; }
 
   /* ---------- Study ---------- */
@@ -168,6 +169,7 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
+  <div class="version">v4</div>
 </section>
 
 <!-- Study -->
@@ -483,7 +485,7 @@ $("homeBtn").onclick = () => { renderHome(); show("home"); };
 renderHome();
 
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
-  navigator.serviceWorker.register("sw.js");
+  navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then(r => r.update());
 }
 </script>
 </body>
