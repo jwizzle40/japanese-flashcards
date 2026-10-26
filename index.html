@@ -139,10 +139,6 @@
   .actions.one { grid-template-columns: 1fr; }
   .actions.front { grid-template-columns: 2fr 1fr; }
   .actions.front .btn { font-size: 16px; padding: 0 12px; }
-  .actions.solo { grid-template-columns: 1fr; gap: 6px; }
-  .btn.plain { border: 0; height: 44px; color: var(--muted); }
-  .btn.plain:active { transform: none; margin: 0; opacity: .6; }
-  .speak-start { margin-top: 12px; }
   .mic.listening { animation: pulse 1s infinite; }
   @keyframes pulse { 50% { filter: brightness(1.15); transform: scale(1.03); } }
 
@@ -173,8 +169,7 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
-  <button class="btn blue speak-start" id="speakBtn"></button>
-  <div class="version">v6</div>
+  <div class="version">v7</div>
 </section>
 
 <!-- Study -->
@@ -216,18 +211,19 @@ const words = window.WORDS.map(w => ({ ...w, id: w.kana + "|" + (w.kanji || "") 
 let saved = { progress: {}, dir: "jp", src: "All", rate: "normal" };
 try { saved = { ...saved, ...JSON.parse(localStorage.getItem(STORE)) }; } catch {}
 const save = () => { try { localStorage.setItem(STORE, JSON.stringify(saved)); } catch {} };
-// Speaking practice keeps its own progress, so a word you can recognize
-// keeps coming back until you can also say it.
-let mode = "cards";
-const key = (w, m = mode) => (m === "speak" ? "say:" : "") + w.id;
-const prog = (w, m) => saved.progress[key(w, m)] || { box: 0, due: 0 };
+// Each direction keeps its own progress, so a word you can recognize
+// (Japanese first) keeps coming back in English first until you can say it.
+const key = (w, side) => (side === "en" ? "say:" : "") + w.id;
+const prog = (w, side) => saved.progress[key(w, side)] || { box: 0, due: 0 };
 
 // ---------- Home ----------
 const DIRS = [["jp", "Japanese"], ["en", "English"], ["mix", "Mix"]];
 const RATES = [["normal", "Normal"], ["slow", "Slow"]];
 
 function inDeck(w) { return saved.src === "All" || w.src.includes(saved.src); }
-function isDue(w, m) { return prog(w, m).due <= Date.now(); }
+const sides = () => saved.dir === "mix" ? ["jp", "en"] : [saved.dir];
+const dueSides = w => sides().filter(s => prog(w, s).due <= Date.now());
+const box = w => Math.min(...sides().map(s => prog(w, s).box));   // Mix: the weaker direction
 
 function chips(el, options, current, onPick) {
   el.innerHTML = "";
@@ -241,13 +237,12 @@ function chips(el, options, current, onPick) {
 }
 
 function renderHome() {
-  mode = "cards";
   const deck = words.filter(inDeck);
-  const due = deck.filter(w => isDue(w)).length;
+  const due = deck.filter(w => dueSides(w).length).length;
   $("total").textContent = `${deck.length} words`;
   $("nDue").textContent = due;
-  $("nLearning").textContent = deck.filter(w => { const b = prog(w).box; return b >= 1 && b <= 3; }).length;
-  $("nKnown").textContent = deck.filter(w => prog(w).box >= 4).length;
+  $("nLearning").textContent = deck.filter(w => { const b = box(w); return b >= 1 && b <= 3; }).length;
+  $("nKnown").textContent = deck.filter(w => box(w) >= 4).length;
 
   chips($("dirChips"), DIRS, saved.dir, v => { saved.dir = v; save(); renderHome(); });
   chips($("rateChips"), RATES, saved.rate, v => { saved.rate = v; save(); renderHome(); say("こんにちは"); });
@@ -258,9 +253,6 @@ function renderHome() {
 
   $("homeMsg").textContent = due ? "" : "All caught up — you can still practice.";
   $("startBtn").textContent = due ? "Start" : "Practice anyway";
-  const sayDue = deck.filter(w => isDue(w, "speak")).length;
-  $("speakBtn").hidden = !SR;
-  $("speakBtn").innerHTML = `${MIC} Speaking practice${sayDue ? ` · ${sayDue} due` : ""}`;
 }
 
 function show(id) { for (const s of ["home", "study", "done"]) $(s).hidden = s !== id; }
@@ -270,18 +262,18 @@ let queue = [], total = 0, got = 0, missed = 0, cur = null, side = "jp", state =
 
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-function start(m) {
-  mode = m;
+function start() {
   const deck = words.filter(inDeck);
-  let pick = deck.filter(w => isDue(w));
-  if (!pick.length) pick = deck;
-  queue = shuffle(pick).slice(0, SESSION).map(w => ({ w, side: mode === "speak" ? "en" : pickSide() }));
+  let pick = deck.filter(w => dueSides(w).length);
+  const anyway = !pick.length;
+  if (anyway) pick = deck;
+  queue = shuffle(pick).slice(0, SESSION).map(w => ({ w, side: pickSide(anyway ? sides() : dueSides(w)) }));
   total = queue.length; got = 0; missed = 0;
   show("study");
   next(true);
 }
 
-function pickSide() { return saved.dir === "mix" ? (Math.random() < .5 ? "jp" : "en") : saved.dir; }
+function pickSide(options) { return options[Math.random() * options.length | 0]; }
 
 function next(first) {
   stopListening();
@@ -332,10 +324,9 @@ function drawCard() {
   card.onclick = () => { if (state !== "done") flip(); };
   card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(cur.kana); });
 
-  $("prompt").textContent = mode === "speak" ? "Say it in Japanese"
-    : side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
+  $("prompt").textContent = side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
   if (side === "jp") say(cur.kana);
-  setHint(mode === "speak" ? "" : "Tap the card to flip");
+  setHint("Tap the card to flip");
   frontActions();
 }
 
@@ -350,7 +341,7 @@ function flip() {
     gradeActions();
   } else {
     state = "front";
-    setHint(mode === "speak" ? "" : "Tap the card to flip");
+    setHint("Tap the card to flip");
     frontActions();
   }
 }
@@ -369,8 +360,7 @@ function actions(btns, layout = btns.length === 1 ? "one" : "") {
 }
 
 function frontActions() {
-  if (mode === "speak") actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["plain", "Show answer", flip]], "solo");
-  else if (SR) actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["", "Flip", flip]], "front");
+  if (SR) actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["", "Flip", flip]], "front");
   else actions([["", "Flip", flip]]);
 }
 function gradeActions() {
@@ -378,7 +368,7 @@ function gradeActions() {
 }
 
 function grade(ok) {
-  const p = prog(cur);
+  const p = prog(cur, side);
   const item = queue.shift();
   if (ok) {
     p.box = Math.min(p.box + 1, 5);
@@ -389,7 +379,7 @@ function grade(ok) {
     missed++;
     queue.push(item);             // see it again this session
   }
-  saved.progress[key(cur)] = p; save();
+  saved.progress[key(cur, side)] = p; save();
 
   if (ok && state !== "done") {   // self-graded "Got it": flash green, then move on
     state = "done";
@@ -473,7 +463,7 @@ function listen() {
     if (got || state === "done") return;
     if (err === "not-allowed" || err === "service-not-allowed") setHint("Mic or Dictation is off — see Settings, or tap Flip", true);
     else if (err === "aborted") setHint("");
-    else if (heard) setHint(`Heard “${heard}” — try again or ${mode === "speak" ? "show answer" : "flip"}`, true);
+    else if (heard) setHint(`Heard “${heard}” — try again or flip`, true);
     else if (err) setHint(`Mic error: ${err} — tap Flip`, true);
     else if (step === "none") setHint("Mic didn’t start — tap Flip", true);
     else setHint("Didn’t hear anything — try again or flip", true);
@@ -495,8 +485,7 @@ function correct() {
 
 // ---------- Wiring ----------
 document.addEventListener("touchstart", () => {}, { passive: true }); // lets :active press states show on iOS
-$("startBtn").onclick = () => start("cards");
-$("speakBtn").onclick = () => start("speak");
+$("startBtn").onclick = start;
 $("quitBtn").onclick = () => { stopListening(); speechSynthesis.cancel(); renderHome(); show("home"); };
 $("homeBtn").onclick = () => { renderHome(); show("home"); };
 renderHome();
