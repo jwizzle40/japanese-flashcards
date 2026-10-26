@@ -174,7 +174,7 @@
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
   <button class="btn blue speak-start" id="speakBtn"></button>
-  <div class="version">v5</div>
+  <div class="version">v6</div>
 </section>
 
 <!-- Study -->
@@ -473,7 +473,7 @@ function listen() {
     if (got || state === "done") return;
     if (err === "not-allowed" || err === "service-not-allowed") setHint("Mic or Dictation is off — see Settings, or tap Flip", true);
     else if (err === "aborted") setHint("");
-    else if (heard) setHint(`Heard “${heard}” — try again or flip`, true);
+    else if (heard) setHint(`Heard “${heard}” — try again or ${mode === "speak" ? "show answer" : "flip"}`, true);
     else if (err) setHint(`Mic error: ${err} — tap Flip`, true);
     else if (step === "none") setHint("Mic didn’t start — tap Flip", true);
     else setHint("Didn’t hear anything — try again or flip", true);
