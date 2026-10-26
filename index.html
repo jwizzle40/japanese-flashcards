@@ -136,6 +136,8 @@
   .hint.heard { color: #ea2b2b; }
   .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .actions.one { grid-template-columns: 1fr; }
+  .actions.front { grid-template-columns: 2fr 1fr; }
+  .actions.front .btn { font-size: 16px; padding: 0 12px; }
   .mic.listening { animation: pulse 1s infinite; }
   @keyframes pulse { 50% { filter: brightness(1.15); transform: scale(1.03); } }
 
@@ -314,7 +316,7 @@ function drawCard() {
   card.onclick = () => { if (state !== "done") flip(); };
   card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(cur.kana); });
 
-  $("prompt").textContent = side === "jp" ? "What does this mean?" : "Say it in Japanese";
+  $("prompt").textContent = side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
   if (side === "jp") say(cur.kana);
   setHint("Tap the card to flip");
   frontActions();
@@ -338,9 +340,9 @@ function flip() {
 
 function setHint(t, heard) { const h = $("hint"); h.textContent = t; h.classList.toggle("heard", !!heard); }
 
-function actions(btns) {
+function actions(btns, layout = btns.length === 1 ? "one" : "") {
   const el = $("actions");
-  el.className = "actions" + (btns.length === 1 ? " one" : "");
+  el.className = "actions " + layout;
   el.innerHTML = "";
   for (const [cls, html, fn] of btns) {
     const b = document.createElement("button");
@@ -350,10 +352,8 @@ function actions(btns) {
 }
 
 function frontActions() {
-  const btns = [];
-  if (SR) btns.push(["blue mic", `${MIC} Speak`, listen]);
-  btns.push(["", "Flip", flip]);
-  actions(btns);
+  if (SR) actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["", "Flip", flip]], "front");
+  else actions([["", "Flip", flip]]);
 }
 function gradeActions() {
   actions([["", "Missed it", () => grade(false)], ["green", "Got it", () => grade(true)]]);
