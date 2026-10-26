@@ -15,6 +15,8 @@ window.WORDS = [
   { kana: "おんなのひと", kanji: "女の人", en: "woman", src: ["Lessons"] },
   { kana: "がくせい", kanji: "学生", en: "student", src: ["Lessons"] },
   { kana: "りゅうがくせい", kanji: "留学生", en: "international student", src: ["Lessons"] },
+  { kana: "だいがく", kanji: "大学", en: "university", src: ["Lessons"] },
+  { kana: "だいがくせい", kanji: "大学生", en: "university student", src: ["Lessons"] },
   { kana: "せんせい", kanji: "先生", en: "teacher", src: ["Lessons"] },
   { kana: "いしゃ", kanji: "医者", en: "doctor", src: ["Lessons"] },
   { kana: "べんごし", kanji: "弁護士", en: "lawyer", src: ["Lessons"] },
@@ -122,6 +124,10 @@ window.SENTENCES = [
   { en: "Is that person an office worker?", parts: ["あのひと", "は", "かいしゃいん", "です", "か"] },
   { en: "Is this tea green tea?", parts: ["この", "おちゃ", "は", "りょくちゃ", "です", "か"] },
   { en: "Are you British?", parts: ["イギリス", "じん", "です", "か"] },
+  { en: "I'm a university student.", parts: ["わたし", "は", "だいがくせい", "です"] },
+  { en: "Naomi is a university student too.", parts: ["なおみ", "さん", "も", "だいがくせい", "です"] },
+  { en: "Is Tanaka a university student?", parts: ["たなか", "さん", "は", "だいがくせい", "です", "か"] },
+  { en: "It's a Japanese university.", parts: ["にほん", "の", "だいがく", "です"] },
 
   // Dogs
   { en: "It's my dog.", parts: ["わたし", "の", "いぬ", "です"] },
