@@ -423,29 +423,47 @@ function matches(heard) {
   return heard.some(h => want.some(a => normJa(h).includes(a)));
 }
 
+// Listens for up to 7 seconds, showing what it hears as you speak, and stops
+// as soon as the answer matches. If nothing comes through, the hint says which
+// step failed (mic never started / no sound / no speech / an error code).
 function listen() {
-  if (rec) return stopListening();
+  if (rec) { try { rec.stop(); } catch {} return; }   // tap again = done talking
   speechSynthesis.cancel();
-  rec = new SR();
-  rec.lang = "ja-JP";
-  rec.interimResults = false;
-  rec.maxAlternatives = 5;
-  const mic = document.querySelector(".mic");
-  mic?.classList.add("listening");
-  setHint("Listening…");
-  rec.onresult = e => {
-    const heard = [...e.results[0]].map(a => a.transcript);
-    if (matches(heard)) correct();
-    else setHint(`Heard “${heard[0]}” — try again or flip`, true);
+  const r = rec = new SR();
+  r.lang = "ja-JP";
+  r.continuous = true;
+  r.interimResults = true;
+  r.maxAlternatives = 5;
+  let heard = "", got = false, step = "none", err = "";
+  document.querySelector(".mic")?.classList.add("listening");
+  setHint("Starting mic…");
+  r.onstart = () => { step = "started"; setHint("Listening… say it in Japanese"); };
+  r.onaudiostart = () => { step = "audio"; };
+  r.onspeechstart = () => { step = "speech"; };
+  r.onresult = e => {
+    const all = [];
+    for (const res of e.results) for (const alt of res) all.push(alt.transcript);
+    heard = [...e.results].map(res => res[0].transcript).join("");
+    if (matches(all.concat(heard))) { got = true; r.stop(); correct(); }
+    else setHint(`Hearing “${heard}”`);
   };
-  rec.onerror = e => {
-    setHint(e.error === "not-allowed" || e.error === "service-not-allowed"
-      ? "Mic is off — allow it in Settings, or tap Flip" : "Didn’t catch that — try again", true);
+  r.onerror = e => { err = e.error; };
+  r.onend = () => {
+    clearTimeout(timer);
+    if (rec === r) rec = null;
+    document.querySelector(".mic")?.classList.remove("listening");
+    if (got || state === "done") return;
+    if (err === "not-allowed" || err === "service-not-allowed") setHint("Mic or Dictation is off — see Settings, or tap Flip", true);
+    else if (err === "aborted") setHint("");
+    else if (heard) setHint(`Heard “${heard}” — try again or flip`, true);
+    else if (err) setHint(`Mic error: ${err} — tap Flip`, true);
+    else if (step === "none") setHint("Mic didn’t start — tap Flip", true);
+    else setHint("Didn’t hear anything — try again or flip", true);
   };
-  rec.onend = () => { rec = null; document.querySelector(".mic")?.classList.remove("listening"); };
-  try { rec.start(); } catch { rec = null; setHint("Mic isn’t available — tap Flip", true); }
+  const timer = setTimeout(() => { try { r.stop(); } catch {} }, 7000);
+  try { r.start(); } catch (e) { rec = null; setHint(`Mic isn’t available (${e.name}) — tap Flip`, true); }
 }
-function stopListening() { if (rec) { try { rec.abort(); } catch {} rec = null; } }
+function stopListening() { if (rec) { const r = rec; rec = null; try { r.abort(); } catch {} } }
 
 function correct() {
   const card = document.querySelector(".card");
