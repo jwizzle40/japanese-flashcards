@@ -57,6 +57,7 @@ window.WORDS = [
   { kana: "またあした", kanji: "また明日", en: "see you tomorrow", src: ["Lessons"] },
   { kana: "また", en: "again", also: ["又"], src: ["Lessons"] },
   { kana: "あした", kanji: "明日", en: "tomorrow", src: ["Lessons"] },
+  { kana: "きのう", kanji: "昨日", en: "yesterday", src: ["Lessons"] },
 
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
