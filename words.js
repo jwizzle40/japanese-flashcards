@@ -28,8 +28,6 @@ window.WORDS = [
   // Particles
   { kana: "も", en: "also / too", note: "わたしも = me too", also: ["藻"], src: ["Lessons"] },
   { kana: "の", en: "'s / of", note: "わたしのくるま = my car", also: ["野"], src: ["Lessons"] },
-  { kana: "は", en: "topic marker (as for…)", note: "written は, said “wa” — わたしは = as for me", also: ["わ"], src: ["Lessons"] },
-  { kana: "か", en: "question marker", note: "goes at the end — ですか = is it?", src: ["Lessons"] },
 
   // Is not
   { kana: "じゃない", en: "is not (casual)", note: "Most common in conversation — friends and family", src: ["Lessons"] },
@@ -125,10 +123,12 @@ window.SENTENCES = [
   { en: "Are you British?", parts: ["イギリス", "じん", "です", "か"] },
 ];
 
-// Pieces sentences use that aren't flashcards: です, さん, and names.
+// Pieces sentences use that aren't flashcards: です, は, か, さん, and names.
 // The mic may write names in kanji or katakana, so those spellings are accepted too.
 window.EXTRAS = [
   { kana: "です" },
+  { kana: "は" },
+  { kana: "か" },
   { kana: "さん" },
   { kana: "たなか", kanji: "田中" },
   { kana: "はな", also: ["花", "ハナ"] },
