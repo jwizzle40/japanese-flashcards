@@ -57,6 +57,7 @@ window.WORDS = [
 
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
+  { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
 
   // Countries and languages (country names are written in katakana)
   { kana: "にほん", kanji: "日本", en: "Japan", also: ["にっぽん"], src: ["Lessons"] },
@@ -121,9 +122,16 @@ window.SENTENCES = [
   { en: "Is that person an office worker?", parts: ["あのひと", "は", "かいしゃいん", "です", "か"] },
   { en: "Is this tea green tea?", parts: ["この", "おちゃ", "は", "りょくちゃ", "です", "か"] },
   { en: "Are you British?", parts: ["イギリス", "じん", "です", "か"] },
+
+  // Dogs
+  { en: "It's my dog.", parts: ["わたし", "の", "いぬ", "です"] },
+  { en: "It's a cool dog.", parts: ["かっこいい", "いぬ", "です"] },
+  { en: "Whose dog is that?", parts: ["その", "いぬ", "は", "だれ", "の", "いぬ", "です", "か"] },
+  { en: "My dog is a Shiba Inu.", parts: ["わたし", "の", "いぬ", "は", "しばいぬ", "です"] },
+  { en: "My dog is a Kai Ken.", parts: ["わたし", "の", "いぬ", "は", "かいけん", "です"] },
 ];
 
-// Pieces sentences use that aren't flashcards: です, は, か, さん, and names.
+// Pieces sentences use that aren't flashcards: です, は, か, さん, names, and her dogs' breeds.
 // The mic may write names in kanji or katakana, so those spellings are accepted too.
 window.EXTRAS = [
   { kana: "です" },
@@ -133,4 +141,6 @@ window.EXTRAS = [
   { kana: "たなか", kanji: "田中" },
   { kana: "はな", also: ["花", "ハナ"] },
   { kana: "なおみ", also: ["ナオミ", "直美"] },
+  { kana: "しばいぬ", kanji: "柴犬", also: ["しばけん"] },
+  { kana: "かいけん", kanji: "甲斐犬" },
 ];
