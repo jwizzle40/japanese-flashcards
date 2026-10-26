@@ -57,4 +57,59 @@ window.WORDS = [
 
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
+
+  // Countries and languages (country names are written in katakana)
+  { kana: "にほん", kanji: "日本", en: "Japan", also: ["にっぽん"], src: ["Lessons"] },
+  { kana: "にほんご", kanji: "日本語", en: "Japanese (language)", src: ["Lessons"] },
+  { kana: "アメリカ", en: "America", src: ["Lessons"] },
+  { kana: "アメリカじん", kanji: "アメリカ人", en: "American (person)", src: ["Lessons"] },
+  { kana: "イギリス", en: "England / the UK", src: ["Lessons"] },
+  { kana: "えいご", kanji: "英語", en: "English (language)", src: ["Lessons"] },
+  { kana: "じん", kanji: "人", en: "person from ___", note: "goes after a country: アメリカじん = American", src: ["Lessons"] },
+];
+
+// Sentence practice — built only from the words above, plus です, さん and names.
+// parts: each piece is a word's kana from the list (or です). Kanji and the
+// mic's accepted spellings come from the word list automatically.
+window.SENTENCES = [
+  { en: "I'm a student too.", parts: ["わたし", "も", "がくせい", "です"] },
+  { en: "That person is a doctor too.", parts: ["あのひと", "も", "いしゃ", "です"] },
+  { en: "It's my car.", parts: ["わたし", "の", "くるま", "です"] },
+  { en: "It's the teacher's car.", parts: ["せんせい", "の", "くるま", "です"] },
+  { en: "It's an international student's car.", parts: ["りゅうがくせい", "の", "くるま", "です"] },
+  { en: "It's a cool car.", parts: ["かっこいい", "くるま", "です"] },
+  { en: "That car is cool too.", parts: ["その", "くるま", "も", "かっこいい", "です"] },
+  { en: "(They're) a kind teacher.", parts: ["やさしい", "せんせい", "です"] },
+  { en: "(They're) a kind person.", parts: ["やさしい", "ひと", "です"] },
+  { en: "This person is a teacher too.", parts: ["この", "ひと", "も", "せんせい", "です"] },
+  { en: "That man over there is a lawyer too.", parts: ["あの", "おとこのひと", "も", "べんごし", "です"] },
+  { en: "That woman is an office worker too.", parts: ["その", "おんなのひと", "も", "かいしゃいん", "です"] },
+  { en: "(I'm) not a doctor. (polite)", parts: ["いしゃ", "じゃありません"] },
+  { en: "(I'm) not an office worker. (casual)", parts: ["かいしゃいん", "じゃない"] },
+  { en: "(I'm) not a lawyer. (formal)", parts: ["べんごし", "ではありません"] },
+  { en: "(I'm) not an international student. (polite)", parts: ["りゅうがくせい", "じゃありません"] },
+  { en: "I'm American too.", parts: ["わたし", "も", "アメリカじん", "です"] },
+  { en: "(I'm) not American. (polite)", parts: ["アメリカじん", "じゃありません"] },
+  { en: "That person is Japanese too.", parts: ["あのひと", "も", "にほん", "じん", "です"] },
+  { en: "That woman is British too.", parts: ["その", "おんなのひと", "も", "イギリス", "じん", "です"] },
+  { en: "(They're) a Japanese teacher.", parts: ["にほんご", "の", "せんせい", "です"] },
+  { en: "(They're) an English teacher.", parts: ["えいご", "の", "せんせい", "です"] },
+  { en: "It's a Japanese car.", parts: ["にほん", "の", "くるま", "です"] },
+  { en: "It's an American car.", parts: ["アメリカ", "の", "くるま", "です"] },
+  { en: "Tanaka is a teacher too.", parts: ["たなか", "さん", "も", "せんせい", "です"] },
+  { en: "It's Hana's car.", parts: ["はな", "さん", "の", "くるま", "です"] },
+  { en: "Naomi is an international student too.", parts: ["なおみ", "さん", "も", "りゅうがくせい", "です"] },
+  { en: "Naomi is Japanese too.", parts: ["なおみ", "さん", "も", "にほん", "じん", "です"] },
+  { en: "It's Tanaka's green tea.", parts: ["たなか", "さん", "の", "りょくちゃ", "です"] },
+  { en: "Hana is a kind person too.", parts: ["はな", "さん", "も", "やさしい", "ひと", "です"] },
+];
+
+// Pieces sentences use that aren't flashcards: です, さん, and names.
+// The mic may write names in kanji or katakana, so those spellings are accepted too.
+window.EXTRAS = [
+  { kana: "です" },
+  { kana: "さん" },
+  { kana: "たなか", kanji: "田中" },
+  { kana: "はな", also: ["花", "ハナ"] },
+  { kana: "なおみ", also: ["ナオミ", "直美"] },
 ];

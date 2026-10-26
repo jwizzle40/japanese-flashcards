@@ -107,6 +107,8 @@
     transition: background .25s, border-color .25s, color .25s;
   }
   .face.back { transform: rotateY(180deg); }
+  .kana.sentence, .kanji.sentence { white-space: normal; line-height: 1.3; max-width: 100%; }
+  .sentence span { display: inline-block; }   /* lines only break between words */
   .kana { font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif; font-weight: 700; line-height: 1.15; white-space: nowrap; }
   .kanji { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; font-weight: 600; color: #777; margin-top: 4px; }
   .en { font-weight: 800; line-height: 1.15; }
@@ -160,7 +162,9 @@
     <div class="stat"><b id="nLearning">0</b><span>Learning</span></div>
     <div class="stat known"><b id="nKnown">0</b><span>Known</span></div>
   </div>
-  <div class="label">Show first</div>
+  <div class="label">Practice</div>
+  <div class="chips" id="practiceChips"></div>
+  <div class="label" id="dirLabel">Show first</div>
   <div class="chips" id="dirChips"></div>
   <div class="label">Voice speed</div>
   <div class="chips" id="rateChips"></div>
@@ -169,7 +173,7 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
-  <div class="version">v7</div>
+  <div class="version">v9</div>
 </section>
 
 <!-- Study -->
@@ -206,22 +210,32 @@ const STAR = `<path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C
 
 const $ = id => document.getElementById(id);
 const words = window.WORDS.map(w => ({ ...w, id: w.kana + "|" + (w.kanji || "") }));
+const byKana = Object.fromEntries([...(window.EXTRAS || []), ...words].map(w => [w.kana, w]));
+// A sentence's kanji line and accepted spellings come from its words.
+const sentences = (window.SENTENCES || []).map(st => {
+  const kana = st.parts.join("");
+  const kanji = st.parts.map(p => byKana[p]?.kanji || p).join("");
+  return { ...st, kana, kanji: kanji !== kana ? kanji : undefined, id: "sent:" + kana, sentence: true };
+});
 
 // ---------- Saved progress + settings ----------
-let saved = { progress: {}, dir: "jp", src: "All", rate: "normal" };
+let saved = { progress: {}, dir: "jp", src: "All", rate: "normal", practice: "words" };
 try { saved = { ...saved, ...JSON.parse(localStorage.getItem(STORE)) }; } catch {}
 const save = () => { try { localStorage.setItem(STORE, JSON.stringify(saved)); } catch {} };
 // Each direction keeps its own progress, so a word you can recognize
 // (Japanese first) keeps coming back in English first until you can say it.
-const key = (w, side) => (side === "en" ? "say:" : "") + w.id;
+const key = (w, side) => w.sentence ? w.id : (side === "en" ? "say:" : "") + w.id;
 const prog = (w, side) => saved.progress[key(w, side)] || { box: 0, due: 0 };
 
 // ---------- Home ----------
+const PRACTICE = [["words", "Words"], ["sentences", "Sentences"]];
 const DIRS = [["jp", "Japanese"], ["en", "English"], ["mix", "Mix"]];
 const RATES = [["normal", "Normal"], ["slow", "Slow"]];
 
 function inDeck(w) { return saved.src === "All" || w.src.includes(saved.src); }
-const sides = () => saved.dir === "mix" ? ["jp", "en"] : [saved.dir];
+const sentenceMode = () => saved.practice === "sentences";
+const sides = () => sentenceMode() ? ["en"] : saved.dir === "mix" ? ["jp", "en"] : [saved.dir];
+const deck = () => sentenceMode() ? sentences : words.filter(inDeck);
 const dueSides = w => sides().filter(s => prog(w, s).due <= Date.now());
 const box = w => Math.min(...sides().map(s => prog(w, s).box));   // Mix: the weaker direction
 
@@ -237,18 +251,20 @@ function chips(el, options, current, onPick) {
 }
 
 function renderHome() {
-  const deck = words.filter(inDeck);
-  const due = deck.filter(w => dueSides(w).length).length;
-  $("total").textContent = `${deck.length} words`;
+  const items = deck();
+  const due = items.filter(w => dueSides(w).length).length;
+  $("total").textContent = `${items.length} ${sentenceMode() ? "sentences" : "words"}`;
   $("nDue").textContent = due;
-  $("nLearning").textContent = deck.filter(w => { const b = box(w); return b >= 1 && b <= 3; }).length;
-  $("nKnown").textContent = deck.filter(w => box(w) >= 4).length;
+  $("nLearning").textContent = items.filter(w => { const b = box(w); return b >= 1 && b <= 3; }).length;
+  $("nKnown").textContent = items.filter(w => box(w) >= 4).length;
 
+  chips($("practiceChips"), PRACTICE, saved.practice, v => { saved.practice = v; save(); renderHome(); });
+  $("dirLabel").hidden = $("dirChips").hidden = sentenceMode();   // sentences are always English first
   chips($("dirChips"), DIRS, saved.dir, v => { saved.dir = v; save(); renderHome(); });
   chips($("rateChips"), RATES, saved.rate, v => { saved.rate = v; save(); renderHome(); say("こんにちは"); });
   const sources = [...new Set(words.flatMap(w => w.src))];
   if (!sources.includes(saved.src)) saved.src = "All";
-  $("srcLabel").hidden = $("srcChips").hidden = sources.length < 2;
+  $("srcLabel").hidden = $("srcChips").hidden = sources.length < 2 || sentenceMode();
   chips($("srcChips"), [["All", "All"], ...sources.map(s => [s, s])], saved.src, v => { saved.src = v; save(); renderHome(); });
 
   $("homeMsg").textContent = due ? "" : "All caught up — you can still practice.";
@@ -263,10 +279,10 @@ let queue = [], total = 0, got = 0, missed = 0, cur = null, side = "jp", state =
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 function start() {
-  const deck = words.filter(inDeck);
-  let pick = deck.filter(w => dueSides(w).length);
+  const items = deck();
+  let pick = items.filter(w => dueSides(w).length);
   const anyway = !pick.length;
-  if (anyway) pick = deck;
+  if (anyway) pick = items;
   queue = shuffle(pick).slice(0, SESSION).map(w => ({ w, side: pickSide(anyway ? sides() : dueSides(w)) }));
   total = queue.length; got = 0; missed = 0;
   show("study");
@@ -292,12 +308,19 @@ function fit(text, max, k) {
 }
 
 function jpFace(w, extra = "") {
+  if (w.sentence) {
+    const spans = list => list.map(t => `<span>${t}</span>`).join("");
+    const kanji = w.parts.map(p => byKana[p]?.kanji || p);
+    return extra + `<div class="kana sentence" style="${fit(w.kana, 10, 130)}">${spans(w.parts)}</div>` +
+      (w.kanji ? `<div class="kanji sentence" style="${fit(w.kanji, 7, 100)}">${spans(kanji)}</div>` : "") +
+      `<button class="speak" aria-label="Hear it">${SPEAKER}</button>`;
+  }
   return `${extra}<div class="kana" style="${fit(w.kana, 28, 74)}">${w.kana}</div>` +
     (w.kanji ? `<div class="kanji" style="${fit(w.kanji, 12, 56)}">${w.kanji}</div>` : "") +
     `<button class="speak" aria-label="Hear it">${SPEAKER}</button>`;
 }
 function enFace(w, extra = "") {
-  return `${extra}<div class="en" style="${fit(w.en, 13, 130)}">${w.en}</div>`;
+  return `${extra}<div class="en" style="${w.sentence ? fit(w.en, 9, 260) : fit(w.en, 13, 130)}">${w.en}</div>`;
 }
 const decor = `<svg class="sparkle a" viewBox="0 0 24 24">${STAR}</svg><svg class="sparkle b" viewBox="0 0 24 24">${STAR}</svg><div class="gloss"></div>`;
 
@@ -324,7 +347,7 @@ function drawCard() {
   card.onclick = () => { if (state !== "done") flip(); };
   card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(cur.kana); });
 
-  $("prompt").textContent = side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
+  $("prompt").textContent = cur.sentence ? "Say it in Japanese" : side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
   if (side === "jp") say(cur.kana);
   setHint("Tap the card to flip");
   frontActions();
@@ -392,8 +415,8 @@ function grade(ok) {
 function finish() {
   show("done");
   $("doneMsg").textContent = missed
-    ? `${total} words · ${missed} to keep practicing`
-    : `${total} words · all correct`;
+    ? `${total} ${sentenceMode() ? "sentences" : "words"} · ${missed} to keep practicing`
+    : `${total} ${sentenceMode() ? "sentences" : "words"} · all correct`;
 }
 
 // ---------- Speech out ----------
@@ -427,6 +450,12 @@ function normJa(s) {
 // Whichever side is showing, the answer is always spoken in Japanese.
 // The recognizer may write it in kana or kanji, so accept either.
 function matches(heard) {
+  if (cur.sentence) {
+    // Each word may come back in kana or kanji, so build one pattern from all their spellings.
+    const spellings = p => { const w = byKana[p]; return [p, w?.kanji, ...(w?.also || [])].filter(Boolean).map(normJa); };
+    const re = new RegExp(cur.parts.map(p => `(?:${spellings(p).join("|")})`).join(""));
+    return heard.some(h => re.test(normJa(h)));
+  }
   const want = [cur.kana, cur.kanji, ...(cur.also || [])].filter(Boolean).map(normJa);
   return heard.some(h => want.some(a => normJa(h).includes(a)));
 }
