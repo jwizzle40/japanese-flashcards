@@ -139,6 +139,10 @@
   .actions.one { grid-template-columns: 1fr; }
   .actions.front { grid-template-columns: 2fr 1fr; }
   .actions.front .btn { font-size: 16px; padding: 0 12px; }
+  .actions.solo { grid-template-columns: 1fr; gap: 6px; }
+  .btn.plain { border: 0; height: 44px; color: var(--muted); }
+  .btn.plain:active { transform: none; margin: 0; opacity: .6; }
+  .speak-start { margin-top: 12px; }
   .mic.listening { animation: pulse 1s infinite; }
   @keyframes pulse { 50% { filter: brightness(1.15); transform: scale(1.03); } }
 
@@ -169,7 +173,8 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
-  <div class="version">v4</div>
+  <button class="btn blue speak-start" id="speakBtn"></button>
+  <div class="version">v5</div>
 </section>
 
 <!-- Study -->
@@ -196,7 +201,7 @@
 <script src="words.js"></script>
 <script>
 const DAY = 864e5;
-const INTERVALS = [0, 0, 1, 3, 7, 16];   // days until a card is due again, by box
+const INTERVALS = [0, 1, 2, 5, 10, 21];  // days until a card is due again, by box (a miss resets to box 1, due now)
 const SESSION = 20;
 const STORE = "jpcards.v1";
 
@@ -211,14 +216,18 @@ const words = window.WORDS.map(w => ({ ...w, id: w.kana + "|" + (w.kanji || "") 
 let saved = { progress: {}, dir: "jp", src: "All", rate: "normal" };
 try { saved = { ...saved, ...JSON.parse(localStorage.getItem(STORE)) }; } catch {}
 const save = () => { try { localStorage.setItem(STORE, JSON.stringify(saved)); } catch {} };
-const prog = w => saved.progress[w.id] || { box: 0, due: 0 };
+// Speaking practice keeps its own progress, so a word you can recognize
+// keeps coming back until you can also say it.
+let mode = "cards";
+const key = (w, m = mode) => (m === "speak" ? "say:" : "") + w.id;
+const prog = (w, m) => saved.progress[key(w, m)] || { box: 0, due: 0 };
 
 // ---------- Home ----------
 const DIRS = [["jp", "Japanese"], ["en", "English"], ["mix", "Mix"]];
 const RATES = [["normal", "Normal"], ["slow", "Slow"]];
 
 function inDeck(w) { return saved.src === "All" || w.src.includes(saved.src); }
-function isDue(w) { return prog(w).due <= Date.now(); }
+function isDue(w, m) { return prog(w, m).due <= Date.now(); }
 
 function chips(el, options, current, onPick) {
   el.innerHTML = "";
@@ -232,8 +241,9 @@ function chips(el, options, current, onPick) {
 }
 
 function renderHome() {
+  mode = "cards";
   const deck = words.filter(inDeck);
-  const due = deck.filter(isDue).length;
+  const due = deck.filter(w => isDue(w)).length;
   $("total").textContent = `${deck.length} words`;
   $("nDue").textContent = due;
   $("nLearning").textContent = deck.filter(w => { const b = prog(w).box; return b >= 1 && b <= 3; }).length;
@@ -248,6 +258,9 @@ function renderHome() {
 
   $("homeMsg").textContent = due ? "" : "All caught up — you can still practice.";
   $("startBtn").textContent = due ? "Start" : "Practice anyway";
+  const sayDue = deck.filter(w => isDue(w, "speak")).length;
+  $("speakBtn").hidden = !SR;
+  $("speakBtn").innerHTML = `${MIC} Speaking practice${sayDue ? ` · ${sayDue} due` : ""}`;
 }
 
 function show(id) { for (const s of ["home", "study", "done"]) $(s).hidden = s !== id; }
@@ -257,11 +270,12 @@ let queue = [], total = 0, got = 0, missed = 0, cur = null, side = "jp", state =
 
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-function start() {
+function start(m) {
+  mode = m;
   const deck = words.filter(inDeck);
-  let pick = deck.filter(isDue);
+  let pick = deck.filter(w => isDue(w));
   if (!pick.length) pick = deck;
-  queue = shuffle(pick).slice(0, SESSION).map(w => ({ w, side: pickSide() }));
+  queue = shuffle(pick).slice(0, SESSION).map(w => ({ w, side: mode === "speak" ? "en" : pickSide() }));
   total = queue.length; got = 0; missed = 0;
   show("study");
   next(true);
@@ -318,9 +332,10 @@ function drawCard() {
   card.onclick = () => { if (state !== "done") flip(); };
   card.querySelectorAll(".speak").forEach(b => b.onclick = e => { e.stopPropagation(); say(cur.kana); });
 
-  $("prompt").textContent = side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
+  $("prompt").textContent = mode === "speak" ? "Say it in Japanese"
+    : side === "jp" ? "What does this mean?" : "How do you say this in Japanese?";
   if (side === "jp") say(cur.kana);
-  setHint("Tap the card to flip");
+  setHint(mode === "speak" ? "" : "Tap the card to flip");
   frontActions();
 }
 
@@ -335,7 +350,7 @@ function flip() {
     gradeActions();
   } else {
     state = "front";
-    setHint("Tap the card to flip");
+    setHint(mode === "speak" ? "" : "Tap the card to flip");
     frontActions();
   }
 }
@@ -354,7 +369,8 @@ function actions(btns, layout = btns.length === 1 ? "one" : "") {
 }
 
 function frontActions() {
-  if (SR) actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["", "Flip", flip]], "front");
+  if (mode === "speak") actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["plain", "Show answer", flip]], "solo");
+  else if (SR) actions([["blue mic", `${MIC} Say it in Japanese`, listen], ["", "Flip", flip]], "front");
   else actions([["", "Flip", flip]]);
 }
 function gradeActions() {
@@ -373,7 +389,7 @@ function grade(ok) {
     missed++;
     queue.push(item);             // see it again this session
   }
-  saved.progress[cur.id] = p; save();
+  saved.progress[key(cur)] = p; save();
 
   if (ok && state !== "done") {   // self-graded "Got it": flash green, then move on
     state = "done";
@@ -479,7 +495,8 @@ function correct() {
 
 // ---------- Wiring ----------
 document.addEventListener("touchstart", () => {}, { passive: true }); // lets :active press states show on iOS
-$("startBtn").onclick = start;
+$("startBtn").onclick = () => start("cards");
+$("speakBtn").onclick = () => start("speak");
 $("quitBtn").onclick = () => { stopListening(); speechSynthesis.cancel(); renderHome(); show("home"); };
 $("homeBtn").onclick = () => { renderHome(); show("home"); };
 renderHome();
