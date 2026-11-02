@@ -85,6 +85,12 @@ window.WORDS = [
   { kana: "あした", kanji: "明日", en: "tomorrow", src: ["Lessons"] },
   { kana: "きのう", kanji: "昨日", en: "yesterday", src: ["Lessons"] },
 
+  // Replies
+  { kana: "はい", en: "yes", src: ["Lessons"] },
+  { kana: "いいえ", en: "no", note: "can sound blunt — people often soften it or just say ちがいます", src: ["Lessons"] },
+  { kana: "そうです", en: "that's right", src: ["Lessons"] },
+  { kana: "そうですか", en: "is that so? / I see", note: "rising tone = really?, falling tone = I see", src: ["Lessons"] },
+
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
   { kana: "おかね", kanji: "お金", en: "money", src: ["Lessons"] },
