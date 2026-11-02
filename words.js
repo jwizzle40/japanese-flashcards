@@ -88,6 +88,9 @@ window.WORDS = [
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
   { kana: "おかね", kanji: "お金", en: "money", src: ["Lessons"] },
+  { kana: "ほん", kanji: "本", en: "book", src: ["Lessons"] },
+  { kana: "しんぶん", kanji: "新聞", en: "newspaper", src: ["Lessons"] },
+  { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
 
   // Countries and languages (country names are written in katakana)
