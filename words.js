@@ -72,6 +72,7 @@ window.WORDS = [
   { kana: "おはよう", en: "good morning (casual)", note: "friends and family", src: ["Lessons"] },
   { kana: "おやすみなさい", en: "good night", also: ["お休みなさい"], src: ["Lessons"] },
   { kana: "さようなら", en: "goodbye", also: ["さよなら"], src: ["Lessons"] },
+  { kana: "じゃあ", en: "well then / see you", note: "casual goodbye with friends — じゃあね, じゃあまた", also: ["じゃ", "じゃあね", "じゃね"], src: ["Lessons"] },
   { kana: "ありがとう", en: "thank you (casual)", note: "friends and family", also: ["有難う"], src: ["Lessons"] },
   { kana: "ありがとうございます", en: "thank you (polite)", also: ["有難うございます"], src: ["Lessons"] },
   { kana: "すみません", en: "sorry / excuse me", note: "also used to get someone's attention", src: ["Lessons"] },
@@ -90,6 +91,9 @@ window.WORDS = [
   { kana: "いいえ", en: "no", note: "can sound blunt — people often soften it or just say ちがいます", src: ["Lessons"] },
   { kana: "そうです", en: "that's right", src: ["Lessons"] },
   { kana: "そうですか", en: "is that so? / I see", note: "rising tone = really?, falling tone = I see", src: ["Lessons"] },
+  { kana: "おねがいします", kanji: "お願いします", en: "please (asking for something)", note: "おちゃ、おねがいします = tea, please", also: ["御願いします"], src: ["Lessons"] },
+  { kana: "どうぞ", en: "here you go / go ahead", note: "said when offering something or letting someone go first", src: ["Lessons"] },
+  { kana: "どうも", en: "thanks", note: "quick, light thanks; どうもありがとう = thank you very much", src: ["Lessons"] },
 
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
