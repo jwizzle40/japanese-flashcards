@@ -72,7 +72,7 @@ window.WORDS = [
   { kana: "おはよう", en: "good morning (casual)", note: "friends and family", src: ["Lessons"] },
   { kana: "おやすみなさい", en: "good night", also: ["お休みなさい"], src: ["Lessons"] },
   { kana: "さようなら", en: "goodbye", also: ["さよなら"], src: ["Lessons"] },
-  { kana: "じゃあ", en: "well then / see you", note: "casual goodbye with friends — じゃあね, じゃあまた", also: ["じゃ", "じゃあね", "じゃね"], src: ["Lessons"] },
+  { kana: "じゃあ", en: "then / in that case / see you", note: "starts a sentence: じゃあ、おちゃ、おねがいします = then I'll have tea, please · also a casual goodbye: じゃあね, じゃあまた", also: ["じゃ", "じゃあね", "じゃね"], src: ["Lessons"] },
   { kana: "ありがとう", en: "thank you (casual)", note: "friends and family", also: ["有難う"], src: ["Lessons"] },
   { kana: "ありがとうございます", en: "thank you (polite)", also: ["有難うございます"], src: ["Lessons"] },
   { kana: "すみません", en: "sorry / excuse me", note: "also used to get someone's attention", src: ["Lessons"] },
