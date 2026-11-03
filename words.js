@@ -26,7 +26,7 @@ window.WORDS = [
   { kana: "あのひと", kanji: "あの人", en: "that person", note: "also used for he / she", src: ["Lessons"] },
   { kana: "おとこのひと", kanji: "男の人", en: "man", src: ["Lessons"] },
   { kana: "おんなのひと", kanji: "女の人", en: "woman", src: ["Lessons"] },
-  { kana: "がくせい", kanji: "学生", en: "student", src: ["Lessons"] },
+  { kana: "がくせい", kanji: "学生", en: "enrolled student", src: ["Lessons"] },
   { kana: "がくしゅうしゃ", kanji: "学習者", en: "learner", note: "anyone studying something, not just a school student — にほんごがくしゅうしゃ = Japanese learner", src: ["Lessons"] },
   { kana: "りゅうがくせい", kanji: "留学生", en: "international student", src: ["Lessons"] },
   { kana: "だいがく", kanji: "大学", en: "university", src: ["Lessons"] },
