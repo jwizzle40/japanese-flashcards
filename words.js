@@ -67,6 +67,9 @@ window.WORDS = [
   { kana: "りょくちゃ", kanji: "緑茶", en: "green tea", src: ["Lessons"] },
   { kana: "ごはん", kanji: "ご飯", en: "rice / meal", also: ["御飯"], src: ["Lessons"] },
   { kana: "みず", kanji: "水", en: "water", src: ["Lessons"] },
+  { kana: "メニュー", en: "menu", src: ["Lessons"] },
+  { kana: "ちゅうもん", kanji: "注文", en: "order (asking to buy something)", note: "food, shopping, online — ちゅうもんする = to order", also: ["ちゅうもんする", "注文する"], src: ["Lessons"] },
+  { kana: "おかいけい", kanji: "お会計", en: "the bill / check", note: "おかいけい、おねがいします = check, please", also: ["御会計"], src: ["Lessons"] },
   { kana: "ください", en: "please (give me)", note: "おちゃをください = tea, please", also: ["下さい"], src: ["Lessons"] },
 
   // Greetings
