@@ -105,6 +105,10 @@ window.WORDS = [
   { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
 
+  // Podcast intro
+  { kana: "いつも", en: "always", note: "usually written in hiragana", also: ["何時も"], src: ["Lessons"] },
+  { kana: "おうえんする", kanji: "応援する", en: "to support / cheer on", note: "にほんごがくしゅうしゃのみなさんをいつもおうえんするポッドキャスト = the podcast that's always cheering on all of you Japanese learners", also: ["おうえんします", "応援します"], src: ["Lessons"] },
+
   // Countries and languages (country names are written in katakana)
   { kana: "にほん", kanji: "日本", en: "Japan", also: ["にっぽん"], src: ["Lessons"] },
   { kana: "にほんご", kanji: "日本語", en: "Japanese (language)", src: ["Lessons"] },
