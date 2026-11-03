@@ -17,6 +17,7 @@ window.WORDS = [
   { kana: "かれら", kanji: "彼ら", en: "they (men, or a mixed group)", src: ["Lessons"] },
   { kana: "かのじょたち", kanji: "彼女たち", en: "they (women) — たち", also: ["彼女達"], src: ["Lessons"] },
   { kana: "かのじょら", kanji: "彼女ら", en: "they (women) — ら", note: "same meaning as かのじょたち; ら is a bit more casual", src: ["Lessons"] },
+  { kana: "みなさん", kanji: "皆さん", en: "everyone", note: "polite way to address a group — みなさん、こんにちは = hello, everyone", src: ["Lessons"] },
   { kana: "ひと", kanji: "人", en: "person", also: ["ヒト"], src: ["Lessons"] },
   { kana: "こども", kanji: "子供", en: "child", also: ["子ども"], src: ["Lessons"] },
   { kana: "おとな", kanji: "大人", en: "adult", src: ["Lessons"] },
