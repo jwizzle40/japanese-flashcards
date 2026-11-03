@@ -56,6 +56,7 @@ window.WORDS = [
   { kana: "さい", kanji: "歳", en: "years old", note: "goes after a number", also: ["才"], src: ["Lessons"] },
   { kana: "やさしい", kanji: "優しい", en: "kind / gentle", also: ["易しい"], src: ["Lessons"] },
   { kana: "かっこいい", en: "cool / good-looking", also: ["格好いい", "かっこ良い", "格好良い"], src: ["Lessons"] },
+  { kana: "げんき", kanji: "元気", en: "well / healthy / energetic", note: "げんきですか = how are you? / are you doing well?", src: ["Lessons"] },
   { kana: "おいしい", kanji: "美味しい", en: "delicious", note: "うまい is a casual way to say it", src: ["Lessons"] },
   { kana: "こわい", kanji: "怖い", en: "scary", note: "also means scared", src: ["Lessons"] },
   { kana: "ぜんぜん", kanji: "全然", en: "not at all", note: "goes with a negative: ぜんぜんこわくない = not scary at all", src: ["Lessons"] },
