@@ -45,6 +45,7 @@ window.WORDS = [
   // Particles
   { kana: "も", en: "also / too", note: "わたしも = me too", also: ["藻"], src: ["Lessons"] },
   { kana: "の", en: "'s / of", note: "わたしのくるま = my car", also: ["野"], src: ["Lessons"] },
+  { kana: "について", en: "about (a topic)", note: "goes after a noun: にほんごについて = about Japanese", src: ["Lessons"] },
 
   // Is not
   { kana: "じゃない", en: "is not (casual)", note: "Most common in conversation — friends and family", src: ["Lessons"] },
@@ -88,6 +89,7 @@ window.WORDS = [
   { kana: "また", en: "again", also: ["又"], src: ["Lessons"] },
   { kana: "あした", kanji: "明日", en: "tomorrow", src: ["Lessons"] },
   { kana: "きのう", kanji: "昨日", en: "yesterday", src: ["Lessons"] },
+  { kana: "きょう", kanji: "今日", en: "today", note: "きょうはげんきですか = how are you today?", src: ["Lessons"] },
 
   // Replies
   { kana: "はい", en: "yes", src: ["Lessons"] },
