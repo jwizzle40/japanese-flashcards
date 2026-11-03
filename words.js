@@ -100,6 +100,7 @@ window.WORDS = [
   { kana: "はい", en: "yes", src: ["Lessons"] },
   { kana: "いいえ", en: "no", note: "can sound blunt — people often soften it or just say ちがいます", src: ["Lessons"] },
   { kana: "そうです", en: "that's right", src: ["Lessons"] },
+  { kana: "いえいえ", en: "no, no / not at all", note: "modest reply to thanks or a compliment", src: ["Lessons"] },
   { kana: "そうですか", en: "is that so? / I see", note: "rising tone = really?, falling tone = I see", src: ["Lessons"] },
   { kana: "おねがいします", kanji: "お願いします", en: "please (asking for something)", note: "おちゃ、おねがいします = tea, please", also: ["御願いします"], src: ["Lessons"] },
   { kana: "どうぞ", en: "here you go / go ahead", note: "said when offering something or letting someone go first", src: ["Lessons"] },
@@ -108,6 +109,7 @@ window.WORDS = [
   // Things
   { kana: "くるま", kanji: "車", en: "car", src: ["Lessons"] },
   { kana: "おかね", kanji: "お金", en: "money", src: ["Lessons"] },
+  { kana: "おみやげ", kanji: "お土産", en: "souvenir / gift from a trip", note: "brought back for friends, family or coworkers", also: ["御土産", "おみあげ"], src: ["Lessons"] },
   { kana: "ほん", kanji: "本", en: "book", src: ["Lessons"] },
   { kana: "しんぶん", kanji: "新聞", en: "newspaper", src: ["Lessons"] },
   { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
