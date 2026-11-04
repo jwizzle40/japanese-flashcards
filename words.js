@@ -118,17 +118,20 @@ window.WORDS = [
   { kana: "しんぶん", kanji: "新聞", en: "newspaper", src: ["Lessons"] },
   { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
-  { kana: "かばん", kanji: "鞄", en: "bag", note: "バッグ is also used, often for handbags", also: ["カバン", "バッグ"], src: ["Lessons"] },
+  { kana: "かばん", kanji: "鞄", en: "bag", note: "the everyday word — also バッグ", also: ["カバン"], src: ["Lessons"] },
+  { kana: "バッグ", en: "bag / handbag (katakana)", note: "borrowed from English — often a handbag; also かばん", src: ["Lessons"] },
   { kana: "きょうかしょ", kanji: "教科書", en: "textbook", src: ["Lessons"] },
   { kana: "つくえ", kanji: "机", en: "desk", src: ["Lessons"] },
   { kana: "いす", kanji: "椅子", en: "chair", also: ["イス"], src: ["Lessons"] },
 
   // Home
   { kana: "へや", kanji: "部屋", en: "room", src: ["Lessons"] },
-  { kana: "だいどころ", kanji: "台所", en: "kitchen", note: "キッチン is also common, especially for modern kitchens", also: ["キッチン"], src: ["Lessons"] },
+  { kana: "だいどころ", kanji: "台所", en: "kitchen", note: "the traditional word — also キッチン", src: ["Lessons"] },
+  { kana: "キッチン", en: "kitchen (katakana)", note: "borrowed from English — common for modern kitchens; also だいどころ", src: ["Lessons"] },
   { kana: "おふろ", kanji: "お風呂", en: "bath", also: ["ふろ", "風呂", "御風呂"], src: ["Lessons"] },
   { kana: "まど", kanji: "窓", en: "window", src: ["Lessons"] },
-  { kana: "ドア", en: "door", note: "written in katakana; a sliding door is と (戸)", src: ["Lessons"] },
+  { kana: "ドア", en: "door (katakana)", note: "borrowed from English — a regular hinged door; also と", src: ["Lessons"] },
+  { kana: "と", kanji: "戸", en: "door (sliding)", note: "a traditional sliding door; also ドア", src: ["Lessons"] },
 
   // Podcast intro
   { kana: "いつも", en: "always", note: "usually written in hiragana", also: ["何時も"], src: ["Lessons"] },
