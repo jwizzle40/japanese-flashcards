@@ -105,6 +105,7 @@ window.WORDS = [
   { kana: "そうです", en: "that's right", src: ["Lessons"] },
   { kana: "いえいえ", en: "no, no / not at all", note: "modest reply to thanks or a compliment", src: ["Lessons"] },
   { kana: "そうですか", en: "is that so? / I see", note: "rising tone = really?, falling tone = I see", src: ["Lessons"] },
+  { kana: "そうですね", en: "that's true / let me see", note: "agreeing with someone, or pausing to think", src: ["Lessons"] },
   { kana: "おねがいします", kanji: "お願いします", en: "please (asking for something)", note: "おちゃ、おねがいします = tea, please", also: ["御願いします"], src: ["Lessons"] },
   { kana: "どうぞ", en: "here you go / go ahead", note: "said when offering something or letting someone go first", src: ["Lessons"] },
   { kana: "どうも", en: "thanks", note: "quick, light thanks; どうもありがとう = thank you very much", src: ["Lessons"] },
@@ -117,6 +118,17 @@ window.WORDS = [
   { kana: "しんぶん", kanji: "新聞", en: "newspaper", src: ["Lessons"] },
   { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
+  { kana: "かばん", kanji: "鞄", en: "bag", note: "バッグ is also used, often for handbags", also: ["カバン", "バッグ"], src: ["Lessons"] },
+  { kana: "きょうかしょ", kanji: "教科書", en: "textbook", src: ["Lessons"] },
+  { kana: "つくえ", kanji: "机", en: "desk", src: ["Lessons"] },
+  { kana: "いす", kanji: "椅子", en: "chair", also: ["イス"], src: ["Lessons"] },
+
+  // Home
+  { kana: "へや", kanji: "部屋", en: "room", src: ["Lessons"] },
+  { kana: "だいどころ", kanji: "台所", en: "kitchen", note: "キッチン is also common, especially for modern kitchens", also: ["キッチン"], src: ["Lessons"] },
+  { kana: "おふろ", kanji: "お風呂", en: "bath", also: ["ふろ", "風呂", "御風呂"], src: ["Lessons"] },
+  { kana: "まど", kanji: "窓", en: "window", src: ["Lessons"] },
+  { kana: "ドア", en: "door", note: "written in katakana; a sliding door is と (戸)", src: ["Lessons"] },
 
   // Podcast intro
   { kana: "いつも", en: "always", note: "usually written in hiragana", also: ["何時も"], src: ["Lessons"] },
