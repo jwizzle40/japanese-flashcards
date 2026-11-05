@@ -57,6 +57,7 @@ window.WORDS = [
   { kana: "さい", kanji: "歳", en: "years old", note: "goes after a number", also: ["才"], src: ["Lessons"] },
   { kana: "やさしい", kanji: "優しい", en: "kind / gentle", also: ["易しい"], src: ["Lessons"] },
   { kana: "かっこいい", en: "cool / good-looking", also: ["格好いい", "かっこ良い", "格好良い"], src: ["Lessons"] },
+  { kana: "すごい", kanji: "凄い", en: "amazing / great", note: "すごく = really / very — すごくおいしい = really delicious", also: ["スゴイ"], src: ["Lessons"] },
   { kana: "げんき", kanji: "元気", en: "well / healthy / energetic", note: "げんきですか = how are you? / are you doing well?", src: ["Lessons"] },
   { kana: "おいしい", kanji: "美味しい", en: "delicious", note: "うまい is a casual way to say it", src: ["Lessons"] },
   { kana: "こわい", kanji: "怖い", en: "scary", note: "also means scared", src: ["Lessons"] },
@@ -123,6 +124,11 @@ window.WORDS = [
   { kana: "きょうかしょ", kanji: "教科書", en: "textbook", src: ["Lessons"] },
   { kana: "つくえ", kanji: "机", en: "desk", src: ["Lessons"] },
   { kana: "いす", kanji: "椅子", en: "chair", also: ["イス"], src: ["Lessons"] },
+
+  // Weather
+  { kana: "なつ", kanji: "夏", en: "summer", src: ["Lessons"] },
+  { kana: "あつい", kanji: "暑い", en: "hot (weather)", note: "熱い (same sound) = hot to the touch, like tea", also: ["熱い"], src: ["Lessons"] },
+  { kana: "むしあつい", kanji: "蒸し暑い", en: "humid / muggy", note: "むし = steamy, あつい = hot", src: ["Lessons"] },
 
   // Home
   { kana: "へや", kanji: "部屋", en: "room", src: ["Lessons"] },
