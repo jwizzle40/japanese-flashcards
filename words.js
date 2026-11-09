@@ -128,6 +128,8 @@ window.WORDS = [
   { kana: "しんぶん", kanji: "新聞", en: "newspaper", src: ["Lessons"] },
   { kana: "ざっし", kanji: "雑誌", en: "magazine", src: ["Lessons"] },
   { kana: "いぬ", kanji: "犬", en: "dog", note: "read けん in breed names — かいけん 甲斐犬 = Kai Ken", src: ["Lessons"] },
+  { kana: "ねこ", kanji: "猫", en: "cat", also: ["ネコ"], src: ["Lessons"] },
+  { kana: "とり", kanji: "鳥", en: "bird", src: ["Lessons"] },
   { kana: "かばん", kanji: "鞄", en: "bag", note: "the everyday word — also バッグ", also: ["カバン"], src: ["Lessons"] },
   { kana: "バッグ", en: "bag / handbag (katakana)", note: "borrowed from English — often a handbag; also かばん", src: ["Lessons"] },
   { kana: "きょうかしょ", kanji: "教科書", en: "textbook", src: ["Lessons"] },
@@ -138,6 +140,26 @@ window.WORDS = [
   { kana: "なつ", kanji: "夏", en: "summer", src: ["Lessons"] },
   { kana: "あつい", kanji: "暑い", en: "hot (weather)", note: "熱い (same sound) = hot to the touch, like tea", also: ["熱い"], src: ["Lessons"] },
   { kana: "むしあつい", kanji: "蒸し暑い", en: "humid / muggy", note: "むし = steamy, あつい = hot", src: ["Lessons"] },
+
+  // Seasons
+  { kana: "きせつ", kanji: "季節", en: "season", src: ["Lessons"] },
+  { kana: "はる", kanji: "春", en: "spring", src: ["Lessons"] },
+  { kana: "あき", kanji: "秋", en: "fall / autumn", src: ["Lessons"] },
+  { kana: "ふゆ", kanji: "冬", en: "winter", src: ["Lessons"] },
+
+  // Months (number + がつ)
+  { kana: "いちがつ", kanji: "一月", en: "January", note: "usually written 1月", also: ["1月", "１月"], src: ["Lessons"] },
+  { kana: "にがつ", kanji: "二月", en: "February", note: "usually written 2月", also: ["2月", "２月"], src: ["Lessons"] },
+  { kana: "さんがつ", kanji: "三月", en: "March", note: "usually written 3月", also: ["3月", "３月"], src: ["Lessons"] },
+  { kana: "しがつ", kanji: "四月", en: "April", note: "4 is し here, not よん · usually written 4月", also: ["4月", "４月"], src: ["Lessons"] },
+  { kana: "ごがつ", kanji: "五月", en: "May", note: "usually written 5月", also: ["5月", "５月"], src: ["Lessons"] },
+  { kana: "ろくがつ", kanji: "六月", en: "June", note: "usually written 6月", also: ["6月", "６月"], src: ["Lessons"] },
+  { kana: "しちがつ", kanji: "七月", en: "July", note: "7 is しち here, not なな · usually written 7月", also: ["7月", "７月"], src: ["Lessons"] },
+  { kana: "はちがつ", kanji: "八月", en: "August", note: "usually written 8月", also: ["8月", "８月"], src: ["Lessons"] },
+  { kana: "くがつ", kanji: "九月", en: "September", note: "9 is く here, not きゅう · usually written 9月", also: ["9月", "９月"], src: ["Lessons"] },
+  { kana: "じゅうがつ", kanji: "十月", en: "October", note: "usually written 10月", also: ["10月", "１０月"], src: ["Lessons"] },
+  { kana: "じゅういちがつ", kanji: "十一月", en: "November", note: "usually written 11月", also: ["11月", "１１月"], src: ["Lessons"] },
+  { kana: "じゅうにがつ", kanji: "十二月", en: "December", note: "usually written 12月", also: ["12月", "１２月"], src: ["Lessons"] },
 
   // Home
   { kana: "へや", kanji: "部屋", en: "room", src: ["Lessons"] },
