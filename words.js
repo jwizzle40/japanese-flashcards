@@ -51,6 +51,7 @@ window.WORDS = [
   // Particles
   { kana: "も", en: "also / too", note: "わたしも = me too", also: ["藻"], src: ["Lessons"] },
   { kana: "の", en: "'s / of", note: "わたしのくるま = my car", also: ["野"], src: ["Lessons"] },
+  { kana: "と", en: "and / with", note: "joins nouns: さかなとやさい = fish and vegetables — not the door 戸", src: ["Lessons"] },
   { kana: "について", en: "about (a topic)", note: "goes after a noun: にほんごについて = about Japanese", src: ["Lessons"] },
 
   // Is not
@@ -145,7 +146,7 @@ window.WORDS = [
   { kana: "おふろ", kanji: "お風呂", en: "bath", also: ["ふろ", "風呂", "御風呂"], src: ["Lessons"] },
   { kana: "まど", kanji: "窓", en: "window", src: ["Lessons"] },
   { kana: "ドア", en: "door (katakana)", note: "borrowed from English — a regular hinged door; also と", src: ["Lessons"] },
-  { kana: "と", kanji: "戸", en: "door (sliding)", note: "a traditional sliding door; also ドア", src: ["Lessons"] },
+  { kana: "と", kanji: "戸", en: "door (sliding)", note: "a traditional sliding door; also ドア — not the particle と (and / with)", src: ["Lessons"] },
 
   // Podcast intro
   { kana: "いつも", en: "always", note: "usually written in hiragana", also: ["何時も"], src: ["Lessons"] },
@@ -236,6 +237,14 @@ window.SENTENCES = [
   { en: "That girl is his friend.", parts: ["その", "おんなのこ", "は", "かれ", "の", "ともだち", "です"] },
   { en: "Is that child Naomi's?", parts: ["あの", "こども", "は", "なおみ", "さん", "の", "です", "か"] },
   { en: "He's not an adult. (casual)", parts: ["かれ", "は", "おとな", "じゃない"] },
+
+  // With と
+  { en: "Hana and Naomi are friends.", parts: ["はな", "さん", "と", "なおみ", "さん", "は", "ともだち", "です"] },
+  { en: "Tanaka and I are friends.", parts: ["わたし", "と", "たなか", "さん", "は", "ともだち", "です"] },
+  { en: "My sister and I are American.", parts: ["いもうと", "と", "わたし", "は", "アメリカじん", "です"] },
+  { en: "Fish and vegetables are delicious.", parts: ["さかな", "と", "やさい", "は", "おいしい", "です"] },
+  { en: "(They're) a Japanese and English teacher.", parts: ["にほんご", "と", "えいご", "の", "せんせい", "です"] },
+  { en: "My dogs are a Shiba Inu and a Kai Ken.", parts: ["わたし", "の", "いぬ", "は", "しばいぬ", "と", "かいけん", "です"] },
 
   // Dogs
   { en: "It's my dog.", parts: ["わたし", "の", "いぬ", "です"] },

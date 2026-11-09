@@ -173,7 +173,7 @@
   <div class="spacer"></div>
   <div class="msg" id="homeMsg"></div>
   <button class="btn green" id="startBtn">Start</button>
-  <div class="version">v44</div>
+  <div class="version">v45</div>
 </section>
 
 <!-- Study -->
@@ -210,7 +210,8 @@ const STAR = `<path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C
 
 const $ = id => document.getElementById(id);
 const words = window.WORDS.map(w => ({ ...w, id: w.kana + "|" + (w.kanji || "") }));
-const byKana = Object.fromEntries([...(window.EXTRAS || []), ...words].map(w => [w.kana, w]));
+// First entry wins, so the particle と (Particles) is used in sentences, not the door 戸.
+const byKana = Object.fromEntries([...(window.EXTRAS || []), ...words].reverse().map(w => [w.kana, w]));
 // A sentence's kanji line and accepted spellings come from its words.
 const sentences = (window.SENTENCES || []).map(st => {
   const kana = st.parts.join("");
