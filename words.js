@@ -161,6 +161,15 @@ window.WORDS = [
   { kana: "じゅういちがつ", kanji: "十一月", en: "November", note: "usually written 11月", also: ["11月", "１１月"], src: ["Lessons"] },
   { kana: "じゅうにがつ", kanji: "十二月", en: "December", note: "usually written 12月", also: ["12月", "１２月"], src: ["Lessons"] },
 
+  // Days of the week
+  { kana: "げつようび", kanji: "月曜日", en: "Monday", note: "月 = moon + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "かようび", kanji: "火曜日", en: "Tuesday", note: "火 = fire + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "すいようび", kanji: "水曜日", en: "Wednesday", note: "水 = water + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "もくようび", kanji: "木曜日", en: "Thursday", note: "木 = tree / wood + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "きんようび", kanji: "金曜日", en: "Friday", note: "金 = gold / metal + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "どようび", kanji: "土曜日", en: "Saturday", note: "土 = earth / soil + ようび (day of the week)", src: ["Lessons"] },
+  { kana: "にちようび", kanji: "日曜日", en: "Sunday", note: "日 = sun + ようび (day of the week)", src: ["Lessons"] },
+
   // Home
   { kana: "へや", kanji: "部屋", en: "room", src: ["Lessons"] },
   { kana: "だいどころ", kanji: "台所", en: "kitchen", note: "the traditional word — also キッチン", src: ["Lessons"] },
