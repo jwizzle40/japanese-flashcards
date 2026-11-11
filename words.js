@@ -65,6 +65,8 @@ window.WORDS = [
   { kana: "やさしい", kanji: "優しい", en: "kind / gentle", also: ["易しい"], src: ["Lessons"] },
   { kana: "かっこいい", en: "cool / good-looking", also: ["格好いい", "かっこ良い", "格好良い"], src: ["Lessons"] },
   { kana: "すごい", kanji: "凄い", en: "amazing / great", note: "すごく = really / very — すごくおいしい = really delicious", also: ["スゴイ"], src: ["Lessons"] },
+  { kana: "おおきい", kanji: "大きい", en: "big", note: "spelled with お, not う: おおきい", src: ["Lessons"] },
+  { kana: "ちいさい", kanji: "小さい", en: "small", src: ["Lessons"] },
   { kana: "わかい", kanji: "若い", en: "young", src: ["Lessons"] },
   { kana: "げんき", kanji: "元気", en: "well / healthy / energetic", note: "げんきですか = how are you? / are you doing well?", src: ["Lessons"] },
   { kana: "おいしい", kanji: "美味しい", en: "delicious", note: "うまい is a casual way to say it", src: ["Lessons"] },
