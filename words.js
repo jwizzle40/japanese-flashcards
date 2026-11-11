@@ -44,9 +44,9 @@ window.WORDS = [
   { kana: "かいしゃいん", kanji: "会社員", en: "office worker", src: ["Lessons"] },
 
   // This / that
-  { kana: "この", en: "this ___", note: "near you", src: ["Lessons"] },
-  { kana: "その", en: "that ___", note: "near the person you're talking to", also: ["園"], src: ["Lessons"] },
-  { kana: "あの", en: "that ___ over there", note: "far from both of you", src: ["Lessons"] },
+  { kana: "この", en: "this [noun]", note: "near you", src: ["Lessons"] },
+  { kana: "その", en: "that [noun]", note: "near the person you're talking to", also: ["園"], src: ["Lessons"] },
+  { kana: "あの", en: "that [noun] over there", note: "far from both of you", src: ["Lessons"] },
 
   // Particles
   { kana: "も", en: "also / too", note: "わたしも = me too", also: ["藻"], src: ["Lessons"] },
