@@ -163,6 +163,18 @@ window.WORDS = [
   { kana: "じゅういちがつ", kanji: "十一月", en: "November", note: "usually written 11月", also: ["11月", "１１月"], src: ["Lessons"] },
   { kana: "じゅうにがつ", kanji: "十二月", en: "December", note: "usually written 12月", also: ["12月", "１２月"], src: ["Lessons"] },
 
+  // Last / this / next
+  { kana: "せんしゅう", kanji: "先週", en: "last week", note: "せん (先) = last", src: ["Lessons"] },
+  { kana: "こんしゅう", kanji: "今週", en: "this week", note: "こん (今) = this", src: ["Lessons"] },
+  { kana: "らいしゅう", kanji: "来週", en: "next week", note: "らい (来) = next", src: ["Lessons"] },
+  { kana: "さらいしゅう", kanji: "再来週", en: "the week after next", note: "さ (再) + らいしゅう", src: ["Lessons"] },
+  { kana: "せんげつ", kanji: "先月", en: "last month", note: "same pattern as せんしゅう", src: ["Lessons"] },
+  { kana: "こんげつ", kanji: "今月", en: "this month", note: "same pattern as こんしゅう", src: ["Lessons"] },
+  { kana: "らいげつ", kanji: "来月", en: "next month", note: "same pattern as らいしゅう", src: ["Lessons"] },
+  { kana: "きょねん", kanji: "去年", en: "last year", note: "breaks the pattern — not せんねん", src: ["Lessons"] },
+  { kana: "ことし", kanji: "今年", en: "this year", note: "breaks the pattern — not こんねん", src: ["Lessons"] },
+  { kana: "らいねん", kanji: "来年", en: "next year", note: "same pattern as らいしゅう", src: ["Lessons"] },
+
   // Days of the week
   { kana: "げつようび", kanji: "月曜日", en: "Monday", note: "月 = moon + ようび (day of the week)", src: ["Lessons"] },
   { kana: "かようび", kanji: "火曜日", en: "Tuesday", note: "火 = fire + ようび (day of the week)", src: ["Lessons"] },
