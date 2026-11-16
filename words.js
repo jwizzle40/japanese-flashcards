@@ -118,6 +118,7 @@ window.WORDS = [
   { kana: "はい", en: "yes", src: ["Lessons"] },
   { kana: "いいえ", en: "no", note: "can sound blunt — people often soften it or just say ちがいます", src: ["Lessons"] },
   { kana: "そうです", en: "that's right", src: ["Lessons"] },
+  { kana: "ちがいます", kanji: "違います", en: "that's not right / it's different", note: "polite way to say no to a fact — いいえ、ちがいます · casual: ちがう", also: ["ちがう", "違う"], src: ["Lessons"] },
   { kana: "いえいえ", en: "no, no / not at all", note: "modest reply to thanks or a compliment", src: ["Lessons"] },
   { kana: "そうですか", en: "is that so? / I see", note: "rising tone = really?, falling tone = I see", src: ["Lessons"] },
   { kana: "そうですね", en: "that's true / let me see", note: "agreeing with someone, or pausing to think", src: ["Lessons"] },
