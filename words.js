@@ -167,7 +167,7 @@ window.WORDS = [
   { kana: "せんしゅう", kanji: "先週", en: "last week", note: "せん (先) = last", src: ["Lessons"] },
   { kana: "こんしゅう", kanji: "今週", en: "this week", note: "こん (今) = this", src: ["Lessons"] },
   { kana: "らいしゅう", kanji: "来週", en: "next week", note: "らい (来) = next", src: ["Lessons"] },
-  { kana: "さらいしゅう", kanji: "再来週", en: "the week after next", note: "さ (再) + らいしゅう", src: ["Lessons"] },
+  { kana: "あさって", kanji: "明後日", en: "the day after tomorrow", note: "usually written in hiragana; あした = tomorrow", src: ["Lessons"] },
   { kana: "せんげつ", kanji: "先月", en: "last month", note: "same pattern as せんしゅう", src: ["Lessons"] },
   { kana: "こんげつ", kanji: "今月", en: "this month", note: "same pattern as こんしゅう", src: ["Lessons"] },
   { kana: "らいげつ", kanji: "来月", en: "next month", note: "same pattern as らいしゅう", src: ["Lessons"] },
