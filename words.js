@@ -42,6 +42,10 @@ window.WORDS = [
   { kana: "いしゃ", kanji: "医者", en: "doctor", src: ["Lessons"] },
   { kana: "べんごし", kanji: "弁護士", en: "lawyer", src: ["Lessons"] },
   { kana: "かいしゃいん", kanji: "会社員", en: "office worker", src: ["Lessons"] },
+  { kana: "しゃちょう", kanji: "社長", en: "company president", note: "the head of a company — also used as a title: たなかしゃちょう", src: ["Lessons"] },
+  { kana: "かしゅ", kanji: "歌手", en: "singer", src: ["Lessons"] },
+  { kana: "けいさつ", kanji: "警察", en: "police", note: "the police as a whole; a police officer = けいさつかん (警察官), or おまわりさん", src: ["Lessons"] },
+  { kana: "しょくぎょう", kanji: "職業", en: "occupation", note: "formal, like on a form; in conversation people usually say しごと (job)", src: ["Lessons"] },
 
   // This / that
   { kana: "この", en: "this [noun]", note: "near you", src: ["Lessons"] },
