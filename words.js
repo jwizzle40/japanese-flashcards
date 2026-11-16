@@ -175,6 +175,12 @@ window.WORDS = [
   { kana: "ことし", kanji: "今年", en: "this year", note: "breaks the pattern — not こんねん", src: ["Lessons"] },
   { kana: "らいねん", kanji: "来年", en: "next year", note: "same pattern as らいしゅう", src: ["Lessons"] },
 
+  // Time of day
+  { kana: "あさ", kanji: "朝", en: "morning", note: "あさごはん = breakfast", src: ["Lessons"] },
+  { kana: "ひる", kanji: "昼", en: "noon / daytime", note: "ひるごはん = lunch", src: ["Lessons"] },
+  { kana: "よる", kanji: "夜", en: "night", note: "ばん (晩) = evening", src: ["Lessons"] },
+  { kana: "いつ", en: "when?", note: "not いつも (always)", also: ["何時"], src: ["Lessons"] },
+
   // Days of the week
   { kana: "げつようび", kanji: "月曜日", en: "Monday", note: "月 = moon + ようび (day of the week)", src: ["Lessons"] },
   { kana: "かようび", kanji: "火曜日", en: "Tuesday", note: "火 = fire + ようび (day of the week)", src: ["Lessons"] },
